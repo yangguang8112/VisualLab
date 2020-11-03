@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8">
+                <meta http-equiv="pragma", content="no-cache">
+                <title>WGS监控</title>
+        <script src="../static/js/jquery-1.11.1.min.js"></script>
+                <script src="../static/js/echarts.min.js"></script>
+        <link  href="../static/css/main.css" rel="stylesheet" type="text/css" />
+        </head>
+        <body>
+                <header id="header">
+                        <h3 class="header-title">WGS实时追踪</h3>
+                        <div class="header-info header-info-r">时间：<span id="nowDate"></span><small>（每隔1分钟自动刷新）</small></div>
+                </header>
+
+                <footer id="footer"></footer>
+
+                <div id="gyroContain">
+<!--                    <div id="title">WGS实时追踪</div>
+                        <div id="tim"></div> -->
+                        <div id="l1">我是左1</div>
+                        <div id="l2">我是左2</div>
+                        <div id="c1">
+                                <div class="num"><h1>123</h1></div>
+                                <div class="num"><h1>123</h1></div>
+                                <div class="num"><h1>123</h1></div>
+                                <!-- <div class="num"><h1></h1></div> -->
+                                <div><br></br></div>
+                                <div><br></br></div>
+                                <div class="txt"><h2>累积生产</h2></div>
+                                <div class="txt"><h2>待生产</h2></div>
+                                <div class="txt"><h2>生产中</h2></div>
+                                <!-- <div class="txt"><h2>累计死亡</h2></div> -->
+                        </div>
+                        <div id="c2">我是中2</div>
+                        <div id="r1">我是右1</div>
+                        <div id="r2">我是右2</div>
+                        <script src="../static/js/ec_center.js"></script>
+                        <script src="../static/js/ec_left1.js"></script>
+                        <script src="../static/js/ec_left2.js"></script>
+                        <script src="../static/js/ec_right1.js"> </script>
+                        <script src="../static/js/ec_right2.js"></script>
+                        <!-- <script src="../static/js/earth.js"></script> -->
+                        <!-- <script src="../static/js/controller.js"> </script> -->
+
+                        <script type="text/javascript">
+                        $.ajaxSetup({cache:false});
+                        $(function() {
+                                //获取当天日期
+                                function load_date() {
+                                        const now = new Date();
+                                        const year = now.getFullYear();
+                                        const month = now.getMonth()+1;
+                                        const day = now.getDate();
+                                        const hours = now.getHours();
+                                        const minutes = now.getMinutes();
+                                        const seconds = now.getSeconds();
+                                        $("#nowDate").html(year+"年"+month+"月"+day+"日" + " " + hours + ":" + minutes + ":" + seconds);
+                                }
+
+                                function get_c2_data() {
+                                    $.ajax({
+                                        url:"/c2",
+                                        success: function(data) {
+                                                        // ec_center_option.series[0].data=data.data
+                                            ec_center.setOption(ec_center_option)
+                                                },
+                                                error: function(xhr, type, errorThrown) {
+
+                                                }
+                                    })
+                                }
+
+
+                                function load_page() {
+                                        load_date();
+                                        get_c2_data()
+                                }
+
+                                load_date()
+                                var _timerPie;
+                                _timerPie = window.setInterval(function () { //数据动态展现，时间动态实时
+                                        load_date();
+                                }, 1000);
+
+                                load_page()
+                                var _timerPie1;
+                                var seconds = new Date().getSeconds();
+                                window.setTimeout(function () {
+                                        _timerPie1 = window.setInterval(function () { //数据动态展现,每隔1分钟刷新页面
+                                                load_page();
+                                        }, 60000);
+                                        load_page();
+                                }, 60000 - seconds * 1000);
+                                console.log(60000 - seconds * 1000);
+
+                                                        // 数字变化特效
+                                // function rollNum(elId, startVal, endVal, decimalNum) {
+                                //      let n = decimalNum || 0;
+                                //      let countUp = new CountUp(elId, startVal, endVal, n, 2.5, {
+                                //              useEasing: true, 
+                                //              useGrouping: true, 
+                                //              separator: ',', 
+                                //              decimal: '.'
+                                //      });
+                                //      if(!countUp.error) {
+                                //              countUp.start();
+                                //      }else {
+                                //              console.error(countUp.error);
+                                //      }
+
+
+
+                            })
+                </script>
+
+                </div>
+        </body>
+</html>
