@@ -1,1 +1,25 @@
 # VisualLab
+### 依赖
+pip install flask
+### 初始化
+进入项目目录
+``` bash
+$flask init-db
+Initialized the database.
+```
+### 运行
+``` shell
+$flask run
+ * Serving Flask app "mainpage" (lazy loading)
+ * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 194-248-006
+```
+### 开发
+
+在mainp.py中补充sql语句获取需要的数据，以json格式传给posts
+
+前端页面为templates/index.html 遵循jinja2的传参规则，这部分主要修改js
