@@ -4,19 +4,23 @@ DROP TABLE IF EXISTS qc_res;
 DROP TABLE IF EXISTS align_res;
 DROP TABLE IF EXISTS analy_res;
 
+/*created 应该是时间类型，需要修改
+*/
+
 CREATE TABLE raw_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     chip_id TEXT NOT NULL,
     lane_id TEXT NOT NULL,
-    created TIMESTAMP NOT NULL,
+    sample_id TEXT NOT NULL,
+    created TIMESTAMP  NOT NULL,
     split_rate FLOAT NOT NULL,
     esr FLOAT NOT NULL,
-    basenun_G INTEGER NOT NULL,
+    basenun_G FLOAT NOT NULL,
     GC FLOAT NOT NULL,
     Q30_read2 FLOAT NOT NULL,
     Q30_total FLOAT NOT NULL,
     Q20 FLOAT NOT NULL,
-    totalreads_M INTEGER NOT NULL,
+    totalreads_M FLOAT NOT NULL,
     Lag FLOAT NOT NULL,
     Runon FLOAT NOT NULL,
     cycle_N_max FLOAT NOT NULL,
@@ -66,7 +70,10 @@ CREATE TABLE align_res(
     chip_id TEXT NOT NULL,
     lane_id TEXT NOT NULL,
     sample_id TEXT NOT NULL,
-    ReferenceVersion TEXT NOT NULL,
+    created TIMESTAMP NOT NULL,
+/*    ReferenceVersion TEXT NOT NULL,
+暂时注释，真实数据需要此字段
+*/
     MappingRate FLOAT NOT NULL,
     UniqueRate FLOAT NOT NULL,
     DuplicateRate FLOAT NOT NULL,
@@ -83,6 +90,7 @@ CREATE TABLE analy_res(
     chip_id TEXT NOT NULL,
     lane_id TEXT NOT NULL,
     sample_id TEXT NOT NULL,
+    created TIMESTAMP NOT NULL,
     SNP_Number FLOAT NOT NULL,
     Het_Hom FLOAT NOT NULL,
     Ti_Tv FLOAT NOT NULL,
