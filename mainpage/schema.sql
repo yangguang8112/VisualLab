@@ -59,7 +59,7 @@ CREATE TABLE qc_res (
     GC FLOAT NOT NULL,
     Clean_data_Raw_data FLOAT NOT NULL,
     EqualReads FLOAT NOT NULL
-)
+);
 
 CREATE TABLE align_res(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -72,11 +72,11 @@ CREATE TABLE align_res(
     DuplicateRate FLOAT NOT NULL,
     MismatchRate FLOAT NOT NULL,
     Depth FLOAT NOT NULL,
-    1X_Coverage FLOAT NOT NULL,
-    4X_Coverage FLOAT NOT NULL,
-    10X_Coverage FLOAT NOT NULL,
-    20X_Coverge FLOAT NOT NULL
-)
+    c1X_Coverage FLOAT NOT NULL,
+    c4X_Coverage FLOAT NOT NULL,
+    c10X_Coverage FLOAT NOT NULL,
+    c20X_Coverge FLOAT NOT NULL
+);
 
 CREATE TABLE analy_res(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -97,4 +97,4 @@ CREATE TABLE analy_res(
     GeneticSex FLOAT NOT NULL,
     contamination FLOAT NOT NULL,
     mtDNAhaplotype FLOAT NOT NULL
-)
+);
