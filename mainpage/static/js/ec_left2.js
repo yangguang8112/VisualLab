@@ -80,58 +80,51 @@ var ec_left2 = echarts.init(document.getElementById('l2'));
 // 	}]
 // };
 
-
 var ec_left2_Option = {
-    title: {
-        // text: '世界人口总量',
-        // subtext: '数据来自网络'
-    },
+	title: {
+		text: "资源使用",
+		textStyle: {
+			 color: 'white',
+		},
+		left: 'left',
+	},
     tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'shadow'
+        formatter: '{a} <br/>{b} : {c}%'
+    },
+    toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
         }
-    },
-    // legend: {
-    //     data: ['2011年', '2012年']
-    // },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis: {
-        type: 'value',
-        boundaryGap: [0, 0.01],
-        axisLine: {
-      		lineStyle: {
-        		color: "rgba(255, 255, 255, 1)"
-      		}
-    	}
-    },
-    yAxis: {
-        type: 'category',
-        data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)'],
-        axisLine: {
-      		lineStyle: {
-        		color: "rgba(255, 255, 255, 1)"
-      		}
-    	}
     },
     series: [
         {
-            name: '2011年',
-            type: 'bar',
-            data: [18203, 23489, 29034, 104970, 131744, 630230]
-        },
-        {
-            name: '2012年',
-            type: 'bar',
-            data: [19325, 23438, 31000, 121594, 134141, 681807]
+            name: '业务指标',
+            type: 'gauge',
+            detail: {formatter: '{value}%'},
+            data: [{value: 50, name: 'CPU利用率'}],
+            markPoint:{  //图表标注
+                symbol:'circle', //'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
+                symbolSize:5,
+                data:[
+                    //跟你的仪表盘的中心位置对应上，颜色可以和画板底色一样
+                    {x:'center',y:'center',itemStyle:{color:'#FFF'}}
+                ]
+            },
+            
+            title : {               //设置仪表盘中间显示文字样式
+                textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                    fontSize: 13,
+                    color:"white"
+                }
+            },
         }
     ]
 };
 
+setInterval(function () {
+    option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    myChart.setOption(option, true);
+},2000);
 
 ec_left2.setOption(ec_left2_Option)
