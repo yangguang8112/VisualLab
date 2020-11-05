@@ -106,10 +106,10 @@ var ec_center = echarts.init(document.getElementById('c2'));
 
 
 ec_center_option = {
-    title: {
-        text: '南丁格尔玫瑰图',
-        left: 'center'
-    },
+    // title: {
+    //     text: '南丁格尔玫瑰图',
+    //     left: 'center'
+    // },
     tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -141,9 +141,9 @@ ec_center_option = {
             center: ['50%', '50%'],
             roseType: 'area',
             data: [
-                {value: 55, name: '生产中'},
-                {value: 75, name: '待生产'},
-                {value: 100, name: '累积生产'}
+                {value: 23, name: '生产中'},
+                {value: 32, name: '待生产'},
+                {value: 328, name: '累积生产'}
             ]
         }
     ]
