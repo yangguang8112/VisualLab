@@ -7,6 +7,9 @@ pip install flask
 $flask init-db
 Initialized the database.
 ```
+### 数据库
+schema.sql是生成数据库表的脚本，修改此脚本可以修改表结构
+gener_tool_data.sql是插入tool data的sql脚本，可以通过修改auto_db.py来修改生成此脚本
 ### 运行
 ``` shell
 $flask run
