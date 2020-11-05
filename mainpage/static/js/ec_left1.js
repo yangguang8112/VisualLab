@@ -91,9 +91,13 @@ var ec_left1 = echarts.init(document.getElementById('l1'));
 // };
 
 ec_left1_Option = {
-    // title: {
-    //     text: '折线图堆叠'
-    // },
+	title: {
+		text: "变异统计",
+		textStyle: {
+			 color: 'white',
+		},
+		left: 'left',
+	},
     tooltip: {
         trigger: 'axis'
     },
@@ -122,7 +126,9 @@ ec_left1_Option = {
     	}
     },
     yAxis: {
-        type: 'value',
+        type: 'log',
+        min: 1000,
+        logBase: 100,
         axisLine: {
       		lineStyle: {
         		color: "rgba(255, 255, 255, 1)"
@@ -131,34 +137,29 @@ ec_left1_Option = {
     },
     series: [
         {
-            name: '邮件营销',
+            name: 'SNP',
             type: 'line',
-            stack: '总量',
-            data: [120, 132, 101, 134, 90, 230, 210]
+            data: [37379830, 38379840, 35379840, 40079830, 33379800, 23780900, 32379830]
         },
         {
-            name: '联盟广告',
+            name: 'INDEL',
             type: 'line',
-            stack: '总量',
-            data: [220, 182, 191, 234, 290, 330, 310]
+            data: [9966730, 9320000, 9010000, 9340000, 1290000, 8330000, 8320000]
         },
         {
-            name: '视频广告',
+            name: 'CNV_DEL',
             type: 'line',
-            stack: '总量',
-            data: [150, 232, 201, 154, 190, 330, 410]
+            data: [33020, 32000, 34000, 39000, 33000, 23000, 29000]
         },
         {
-            name: '直接访问',
+            name: 'CNV_DUP',
             type: 'line',
-            stack: '总量',
-            data: [320, 332, 301, 334, 390, 330, 320]
+            data: [4500, 4800, 3500, 4000, 4200, 3300, 3100]
         },
         {
-            name: '搜索引擎',
+            name: 'SV',
             type: 'line',
-            stack: '总量',
-            data: [820, 932, 901, 934, 1290, 1330, 1320]
+            data: [4830, 3320, 4580, 4340, 3900, 3300, 3200]
         }
     ]
 };

@@ -71,6 +71,21 @@ function get_l2_data() {
     })
 }
 
+function get_l3_data() {
+    $.ajax({
+        url:"/l3",
+        success: function(data) {
+			ec_left3_Option.xAxis[0].data=data.day
+            ec_left3_Option.series[0].data=data.confirm_add
+            ec_left3_Option.series[1].data=data.suspect_add
+            ec_left3.setOption(ec_left3_Option)
+		},
+		error: function(xhr, type, errorThrown) {
+
+		}
+    })
+}
+
 function get_r1_data() {
     $.ajax({
         url: "/r1",

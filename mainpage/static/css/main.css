@@ -135,10 +135,22 @@ body {
 
 #l2 {
 	position: absolute;
-	width: 30%;
+	width: 20%;
 	height: 45%;
-	top: 50%;
+	top: 55%;
 	left: 0%;
+	margin-right: 0px;
+	padding-right: 0px;
+	/*background: #777;*/
+}
+#l3 {
+	position: absolute;
+	width: 20%;
+	height: 45%;
+	top: 55%;
+	left: 18%;
+	margin-left: 0px;
+	padding-left: 0px;
 	/*background: #777;*/
 }
 
