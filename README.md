@@ -6,11 +6,10 @@ pip install flask
 ### 初始化
 进入项目目录
 ``` bash
+cd VisualLab
 export FLASK_APP=mainpage
 export FLASK_ENV=development
 flask init-db
-```
-```
 ```
 ### 数据库
 schema.sql是生成数据库表的脚本，修改此脚本可以修改表结构
