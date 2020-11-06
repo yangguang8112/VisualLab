@@ -11,6 +11,7 @@ CREATE TABLE sample_info (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     chip_name TEXT NOT NULL,
     lane_name TEXT NOT NULL,
+    machine_name TEXT NOT NULL,
     sample_name TEXT NOT NULL,
     sample_type TEXT NOT NULL,
     DNB TEXT NOT NULL,
