@@ -143,7 +143,7 @@ ec_center_option = {
             data: [
                 {value: 23, name: '生产中'},
                 {value: 32, name: '待生产'},
-                {value: 328, name: '累积生产'}
+                {value: 27, name: '累积生产/周'}
             ]
         }
     ]
