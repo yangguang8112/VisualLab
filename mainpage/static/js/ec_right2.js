@@ -1,112 +1,103 @@
 var ec_right2 = echarts.init(document.getElementById('r2'));
 
-// var ddd = [{'name': '肺炎', 'value': '12734670'}, {'name': '实时', 'value': '12734670'},
-// {'name': '新型', 'value': '12734670'}]
-// var ec_right2_option = {
-//                         // backgroundColor: '#515151',
-// 						title : {
-// 						    text : "今日疫情热搜",
-// 						    textStyle : {
-// 						        color : 'white',
-// 						    },
-// 						    left : 'left'
-// 						},
-//                         tooltip: {
-//                             show: false
-//                         },
-//                         series: [{
-//                                 type: 'wordCloud',
-// 								// drawOutOfBound:true,
-//                                 gridSize: 1,
-//                                 sizeRange: [12, 55],
-//                                 rotationRange: [-45, 0, 45, 90],
-//                                 // maskImage: maskImage,
-//                                 textStyle: {
-//                                     normal: {
-//                                         color: function () {
-//                                             return 'rgb(' +
-//                                                     Math.round(Math.random() * 255) +
-//                                                     ', ' + Math.round(Math.random() * 255) +
-//                                                     ', ' + Math.round(Math.random() * 255) + ')'
-//                                         }
-//                                     }
-//                                 },
-//                                 // left: 'center',
-//                                 // top: 'center',
-//                                 // // width: '96%',
-//                                 // // height: '100%',
-//                                 right: null,
-//                                 bottom: null,
-//                                 // width: 300,
-//                                 // height: 200,
-//                                 // top: 20,
-//                                 data:  []
-//                             }]
-//                     }
-
 var ec_right2_option = {
-    // title: {
-    //     text: '漏斗图',
-    //     subtext: '纯属虚构'
-    // },
     tooltip: {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c}%"
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line',
+            lineStyle: {
+                color: 'rgba(0,0,0,0.2)',
+                width: 1,
+                type: 'solid'
+            }
+        }
     },
-    // toolbox: {
-    //     feature: {
-    //         dataView: {readOnly: false},
-    //         restore: {},
-    //         saveAsImage: {}
-    //     }
-    // },
-    // legend: {
-    //     data: ['展现','点击','访问','咨询','订单']
-    // },
+
+    legend: {
+        data: ['Library Construction', 'Pooling', 'Make DNB', 'Load DNB', 'Sequencing', 'Analysis'],
+        textStyle: {
+            color: "rgba(228, 81, 81, 1)"
+          } 
+    },
+
+
+    singleAxis: {
+        top: 50,
+        bottom: 50,
+        axisTick: {},
+        axisLabel: {},
+        type: 'time',
+        axisPointer: {
+            animation: true,
+            label: {
+                show: true
+            }
+        },
+        splitLine: {
+            show: true,
+            lineStyle: {
+                type: 'dashed',
+                opacity: 0.2
+            }
+        }
+    },
 
     series: [
         {
-            name:'漏斗图',
-            type:'funnel',
-            left: '10%',
-            top: 60,
-            //x2: 80,
-            bottom: 60,
-            width: '80%',
-            // height: {totalHeight} - y - y2,
-            min: 0,
-            max: 100,
-            minSize: '0%',
-            maxSize: '100%',
-            sort: 'descending',
-            gap: 2,
-            label: {
-                show: true,
-                position: 'inside'
-            },
-            labelLine: {
-                length: 10,
-                lineStyle: {
-                    width: 1,
-                    type: 'solid'
-                }
-            },
-            itemStyle: {
-                borderColor: '#fff',
-                borderWidth: 1
-            },
+            type: 'themeRiver',
             emphasis: {
-                label: {
-                    fontSize: 20
+                itemStyle: {
+                    shadowBlur: 20,
+                    shadowColor: 'rgba(0, 0, 0, 0.8)'
                 }
             },
-            data: [
-                {value: 60, name: '访问'},
-                {value: 40, name: '咨询'},
-                {value: 20, name: '订单'},
-                {value: 80, name: '点击'},
-                {value: 100, name: '展现'}
-            ]
+            data: [['2020/11/08',10,'Library Construction'],['2020/11/09',15,'Library Construction'],['2020/11/10',35,'Library Construction'],
+            ['2020/11/11',38,'Library Construction'],['2020/11/12',22,'Library Construction'],['2020/11/13',16,'Library Construction'],
+            ['2020/11/14',7,'Library Construction'],['2020/11/15',2,'Library Construction'],['2020/11/16',17,'Library Construction'],
+            ['2020/11/17',33,'Library Construction'],['2020/11/18',40,'Library Construction'],['2020/11/19',32,'Library Construction'],
+            ['2020/11/20',26,'Library Construction'],['2020/11/21',35,'Library Construction'],['2020/11/22',40,'Library Construction'],
+            ['2020/11/23',32,'Library Construction'],['2020/11/24',26,'Library Construction'],['2020/11/25',22,'Library Construction'],
+            ['2020/11/26',16,'Library Construction'],['2020/11/27',22,'Library Construction'],['2020/11/28',10,'Library Construction'],
+            ['2020/11/08',35,'Pooling'],['2020/11/09',36,'Pooling'],['2020/11/10',37,'Pooling'],
+            ['2020/11/11',22,'Pooling'],['2020/11/12',24,'Pooling'],['2020/11/13',26,'Pooling'],
+            ['2020/11/14',34,'Pooling'],['2020/11/15',21,'Pooling'],['2020/11/16',18,'Pooling'],
+            ['2020/11/17',45,'Pooling'],['2020/11/18',32,'Pooling'],['2020/11/19',35,'Pooling'],
+            ['2020/11/20',30,'Pooling'],['2020/11/21',28,'Pooling'],['2020/11/22',27,'Pooling'],
+            ['2020/11/23',26,'Pooling'],['2020/11/24',15,'Pooling'],['2020/11/25',30,'Pooling'],
+            ['2020/11/26',35,'Pooling'],['2020/11/27',42,'Pooling'],['2020/11/28',42,'Pooling'],
+            ['2020/11/08',21,'Make DNB'],['2020/11/09',25,'Make DNB'],['2020/11/10',27,'Make DNB'],
+            ['2020/11/11',23,'Make DNB'],['2020/11/12',24,'Make DNB'],['2020/11/13',21,'Make DNB'],
+            ['2020/11/14',35,'Make DNB'],['2020/11/15',39,'Make DNB'],['2020/11/16',40,'Make DNB'],
+            ['2020/11/17',36,'Make DNB'],['2020/11/18',33,'Make DNB'],['2020/11/19',43,'Make DNB'],
+            ['2020/11/20',40,'Make DNB'],['2020/11/21',34,'Make DNB'],['2020/11/22',28,'Make DNB'],
+            ['2020/11/23',26,'Make DNB'],['2020/11/24',37,'Make DNB'],['2020/11/25',41,'Make DNB'],
+            ['2020/11/26',46,'Make DNB'],['2020/11/27',47,'Make DNB'],['2020/11/28',41,'Make DNB'],
+            ['2020/11/08',10,'Load DNB'],['2020/11/09',15,'Load DNB'],['2020/11/10',35,'Load DNB'],
+            ['2020/11/11',38,'Load DNB'],['2020/11/12',22,'Load DNB'],['2020/11/13',16,'Load DNB'],
+            ['2020/11/14',7,'Load DNB'],['2020/11/15',2,'Load DNB'],['2020/11/16',17,'Load DNB'],
+            ['2020/11/17',33,'Load DNB'],['2020/11/18',40,'Load DNB'],['2020/11/19',32,'Load DNB'],
+            ['2020/11/20',26,'Load DNB'],['2020/11/21',35,'Load DNB'],['2020/11/22',40,'Load DNB'],
+            ['2020/11/23',32,'Load DNB'],['2020/11/24',26,'Load DNB'],['2020/11/25',22,'Load DNB'],
+            ['2020/11/26',16,'Load DNB'],['2020/11/27',22,'Load DNB'],['2020/11/28',10,'Load DNB'],
+            ['2020/11/08',10,'Sequencing'],['2020/11/09',15,'Sequencing'],['2020/11/10',35,'Sequencing'],
+            ['2020/11/11',38,'Sequencing'],['2020/11/12',22,'Sequencing'],['2020/11/13',16,'Sequencing'],
+            ['2020/11/14',7,'Sequencing'],['2020/11/15',2,'Sequencing'],['2020/11/16',17,'Sequencing'],
+            ['2020/11/17',33,'Sequencing'],['2020/11/18',40,'Sequencing'],['2020/11/19',32,'Sequencing'],
+            ['2020/11/20',26,'Sequencing'],['2020/11/21',35,'Sequencing'],['2020/11/22',4,'Sequencing'],
+            ['2020/11/23',32,'Sequencing'],['2020/11/24',26,'Sequencing'],['2020/11/25',22,'Sequencing'],
+            ['2020/11/26',16,'Sequencing'],['2020/11/27',22,'Sequencing'],['2020/11/28',10,'Sequencing'],
+            ['2020/11/08',10,'Analysis'],['2020/11/09',15,'Analysis'],['2020/11/10',35,'Analysis'],
+            ['2020/11/11',38,'Analysis'],['2020/11/12',22,'Analysis'],['2020/11/13',16,'Analysis'],
+            ['2020/11/14',7,'Analysis'],['2020/11/15',2,'Analysis'],['2020/11/16',17,'Analysis'],
+            ['2020/11/17',33,'Analysis'],['2020/11/18',4,'Analysis'],['2020/11/19',32,'Analysis'],
+            ['2020/11/20',26,'Analysis'],['2020/11/21',35,'Analysis'],['2020/11/22',40,'Analysis'],
+            ['2020/11/23',32,'Analysis'],['2020/11/24',26,'Analysis'],['2020/11/25',22,'Analysis'],
+            ['2020/11/26',16,'Analysis'],['2020/11/27',22,'Analysis'],['2020/11/28',10,'Analysis']
+        ],
+        label: {
+            color: "rgba(249, 247, 247, 1)",
+            position: 'top'
+        }
         }
     ]
 };
@@ -115,171 +106,3 @@ var ec_right2_option = {
 ec_right2.setOption(ec_right2_option);
 
 
-// var config = {
-//     color: '#c0101a',
-//     levels: 1,
-//     intensity: 4,
-//     threshold: 0.01
-// }
-
-// var canvas = document.createElement('canvas');
-// canvas.width = 4096;
-// canvas.height = 2048;
-// context = canvas.getContext("2d");
-
-// context.lineWidth = 0.5;
-// context.strokeStyle = config.color;
-// context.fillStyle = config.color;
-// context.shadowColor = config.color;
-
-// $.when(
-//     $.getScript(ROOT_PATH + '/vendors/d3/d3-contour.js'),
-//     $.getScript(ROOT_PATH + '/vendors/d3/d3-geo.js'),
-//     $.getScript(ROOT_PATH + '/vendors/d3/d3-timer.js')
-// ).done(function () {
-
-//     image(ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg').then(function(image) {
-//         var m = image.height,
-//             n = image.width,
-//             values = new Array(n * m),
-//             contours = d3.contours().size([n, m]).smooth(true),
-//             projection = d3.geoIdentity().scale(canvas.width / n),
-//             path = d3.geoPath(projection, context);
-
-//         //   StackBlur.R(image, 5);
-
-//         for (var j = 0, k = 0; j < m; ++j) {
-//             for (var i = 0; i < n; ++i, ++k) {
-//             values[k] = image.data[(k << 2)] / 255;
-//             }
-//         }
-
-//         var opt = {
-//             image: canvas
-//         }
-
-//         var results = [];
-//         function update(threshold, levels) {
-//             context.clearRect(0, 0, canvas.width, canvas.height);
-//             var thresholds = [];
-//             for (var i = 0; i < levels; i++) {
-//                 thresholds.push((threshold + 1 / levels * i) % 1);
-//             }
-//             results = contours.thresholds(thresholds)(values);
-//             redraw();
-//         }
-
-//         function redraw() {
-//             results.forEach(function (d, idx) {
-//                 context.beginPath();
-//                 path(d);
-//                 context.globalAlpha = 1;
-//                 context.stroke();
-//                 if (idx > config.levels / 5 * 3) {
-//                     context.globalAlpha = 0.01;
-//                     context.fill();
-//                 }
-//             });
-//             opt.onupdate();
-//         }
-//         d3.timer(function(t) {
-//             var threshold = (t % 10000) / 10000;
-//             update(threshold, 1);
-//         });
-
-//         initCharts(opt);
-
-//         update(config.threshold, config.levels);
-
-//     });
-
-//     function image(url) {
-//         return new Promise(function(resolve) {
-//             var image = new Image();
-//             image.src = url;
-//             image.onload = function() {
-//             var canvas = document.createElement("canvas");
-//             canvas.width = image.width / 8;
-//             canvas.height = image.height / 8;
-//             var context = canvas.getContext("2d");
-//             context.drawImage(image, 0, 0, canvas.width, canvas.height);
-//             resolve(context.getImageData(0, 0, canvas.width, canvas.height));
-//             };
-//         });
-//     }
-
-//     function initCharts(opt) {
-//         var contourChart = echarts.init(document.createElement('canvas'), null, {
-//             width: 4096,
-//             height: 2048
-//         });
-
-//         var img = new echarts.graphic.Image({
-//             style: {
-//                 image: opt.image,
-//                 x: -1,
-//                 y: -1,
-//                 width: opt.image.width + 2,
-//                 height: opt.image.height + 2
-//             }
-//         });
-//         contourChart.getZr().add(img);
-
-//         opt.onupdate = function () {
-//             img.dirty();
-//         };
-
-//         myChart.setOption({
-//             backgroundColor: '#000',
-//             globe: {
-
-//                 environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
-
-//                 heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
-
-//                 displacementScale: 0.05,
-//                 displacementQuality: 'high',
-
-//                 baseColor: '#000',
-
-//                 shading: 'realistic',
-//                 realisticMaterial: {
-//                     roughness: 0.2,
-//                     metalness: 0
-//                 },
-
-//                 postEffect: {
-//                     enable: true,
-//                     depthOfField: {
-//                         // enable: true
-//                     }
-//                 },
-//                 light: {
-//                     ambient: {
-//                         intensity: 0
-//                     },
-//                     main: {
-//                         intensity: 0.1,
-//                         shadow: false
-//                     },
-//                     ambientCubemap: {
-//                         texture: ROOT_PATH + '/data-gl/asset/lake.hdr',
-//                         exposure: 1,
-//                         diffuseIntensity: 0.5,
-//                         specularIntensity: 2
-//                     }
-//                 },
-//                 viewControl: {
-//                     autoRotate: false
-//                 },
-
-//                 layers: [{
-//                     type: 'blend',
-//                     blendTo: 'emission',
-//                     texture: contourChart,
-//                     intensity: config.intensity
-//                 }]
-//             }
-//         });
-//     }
-// });
