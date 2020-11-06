@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS sample_info;
 DROP TABLE IF EXISTS raw_data;
 DROP TABLE IF EXISTS qc_res;
 DROP TABLE IF EXISTS align_res;
@@ -7,11 +7,22 @@ DROP TABLE IF EXISTS analy_res;
 /*created 应该是时间类型，需要修改
 */
 
+CREATE TABLE sample_info (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    chip_name TEXT NOT NULL,
+    lane_name TEXT NOT NULL,
+    sample_name TEXT NOT NULL,
+    sample_type TEXT NOT NULL,
+    DNB TEXT NOT NULL,
+    library TEXT NOT NULL,
+    created TIMESTAMP  NOT NULL,
+    sample_status TEXT NOT NULL,
+    finish_time TIMESTAMP  NOT NULL,
+);
+
 CREATE TABLE raw_data (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    chip_id TEXT NOT NULL,
-    lane_id TEXT NOT NULL,
-    sample_id TEXT NOT NULL,
+    sample_id INTEGER NOT NULL,
     created TIMESTAMP  NOT NULL,
     split_rate FLOAT NOT NULL,
     esr FLOAT NOT NULL,
@@ -40,9 +51,7 @@ CREATE TABLE raw_data (
 
 CREATE TABLE qc_res (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    chip_id TEXT NOT NULL,
-    lane_id TEXT NOT NULL,
-    sample_id TEXT NOT NULL,
+    sample_id INTEGER NOT NULL,
     created TIMESTAMP NOT NULL,
     totalreads_Mb FLOAT NOT NULL,
     totalbases_Gb FLOAT NOT NULL,
@@ -67,13 +76,9 @@ CREATE TABLE qc_res (
 
 CREATE TABLE align_res(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    chip_id TEXT NOT NULL,
-    lane_id TEXT NOT NULL,
-    sample_id TEXT NOT NULL,
+    sample_id INTEGER NOT NULL,
     created TIMESTAMP NOT NULL,
-/*    ReferenceVersion TEXT NOT NULL,
-暂时注释，真实数据需要此字段
-*/
+    ReferenceVersion TEXT NOT NULL,
     MappingRate FLOAT NOT NULL,
     UniqueRate FLOAT NOT NULL,
     DuplicateRate FLOAT NOT NULL,
@@ -87,9 +92,7 @@ CREATE TABLE align_res(
 
 CREATE TABLE analy_res(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    chip_id TEXT NOT NULL,
-    lane_id TEXT NOT NULL,
-    sample_id TEXT NOT NULL,
+    sample_id INTEGER NOT NULL,
     created TIMESTAMP NOT NULL,
     SNP_Number FLOAT NOT NULL,
     Het_Hom FLOAT NOT NULL,
