@@ -4,12 +4,6 @@ var ec_left3_Option = {
     tooltip: {
         formatter: '{a} <br/>{b} : {c}%'
     },
-    toolbox: {
-        feature: {
-            restore: {},
-            saveAsImage: {}
-        }
-    },
     series: [
         {
             name: '业务指标',
