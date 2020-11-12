@@ -34,10 +34,6 @@ flask run
 前端页面为templates/index.html 遵循jinja2的传参规则，这部分主要修改js
 
 
-
-
-
-
 展示的内容
 
 如何展示
