@@ -3,7 +3,9 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from mainpage.db import get_db
+#from mainpage.db import get_db
+from mainpage.database import db_session
+from mainpage.models import User
 
 bp = Blueprint('mainp', __name__)
 

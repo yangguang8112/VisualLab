@@ -2,7 +2,10 @@
 ### 依赖
 ```shell
 pip install flask
+pip install sqlalchemy
+pip install pymysql
 ```
+使用mysql数据库，本地调试建议构建一个本地mysql数据库，不建议直接在阿里云上的MySQL直接调试
 ### 初始化
 进入项目目录
 ``` bash
