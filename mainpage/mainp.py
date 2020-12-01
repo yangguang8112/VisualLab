@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 #from mainpage.db import get_db
 from mainpage.database import db_session
-from mainpage.models import User
+from mainpage.models import User, RawData
 
 bp = Blueprint('mainp', __name__)
 
@@ -22,3 +22,9 @@ def index():
     '''
     posts=None
     return render_template('index.html', posts=posts)
+
+@bp.route('/ztron_upload', methods=['POST'])
+def ztron_upload():
+    data = request.json
+    print(data)
+    return "hahhh"
