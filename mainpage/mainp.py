@@ -9,6 +9,8 @@ from mainpage.models import Sample, Machine, RawData
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
+from mainpage.config import MYSQLconfig
+
 bp = Blueprint('mainp', __name__)
 
 
@@ -35,7 +37,7 @@ def ztron_upload():
 
 
 def ztron_insert(json_data):
-    engine = create_engine("mysql+pymysql://root:2020@localhost:3306/test",echo=True)
+    engine = create_engine(MYSQLconfig,echo=True)
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
     insert_data = []

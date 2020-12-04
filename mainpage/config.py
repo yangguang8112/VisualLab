@@ -1,0 +1,1 @@
+MYSQLconfig = "mysql+pymysql://root:2020@localhost:3306/test"
