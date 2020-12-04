@@ -69,7 +69,7 @@ def ztron_insert(json_data):
     insert_data = []
     for i in json_data:
         res = session.query(Sample).filter(Sample.chip_name == i['chip_name'], Sample.lane_id == i['lane_id'], Sample.barcode == i['barcode']).first()
-        insert_data.append(RawData(sample_id=res.id, xiaji_date=i["xiaji_date"], split_rate=i["split_rate"], esr=i["esr"], basenum_G=i["basenum_G"], \
+        insert_data.append(RawData(sample_id=res.id, xiaji_date=i["xiaji_date"], split_rate=i["split_rate"], esr=i["esr"], basenun_G=i["basenun_G"], \
             GC=i["GC"], Q30_read2=i["Q30_read2"], Q30_total=i["Q30_total"], Q20=i["Q20"], totalreads_M=i["totalreads_M"], Lag=i["Lag"], \
             Runon=i["Runon"], cycle_N_max=i["cycle_N_max"], Error_rate_est=i["Error_rate_est"], ChipProductivity=i["ChipProductivity"], \
             ImageAre=i["ImageAre"], MaxOffsetX_MaxOffsetY=i["MaxOffsetX_MaxOffsetY"], InitialOffsetX_InitialOffsetY=i["InitialOffsetX_InitialOffsetY"], \

@@ -35,7 +35,7 @@ json_data = [
         "xiaji_date" : "2020-12-3 10:02:11",
         "split_rate" : 0.4,
         "esr" : 0.2,
-        "basenum_G" : 1022,
+        "basenun_G" : 1022,
         "GC" : 0.8,
         "Q30_read2" : 0.22,
         "Q30_total" : 0.76,

@@ -115,7 +115,7 @@ class RawData(Base):
     xiaji_date = Column(TIMESTAMP)
     split_rate = Column(Float)
     esr = Column(Float)
-    basenum_G = Column(Float)
+    basenun_G = Column(Float)
     GC = Column(Float)
     Q30_read2 = Column(Float)
     Q30_total = Column(Float)
