@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey
 from mainpage.database import Base
 
 class User(Base):
@@ -42,14 +42,14 @@ class Sample(Base):
     DNB_name = Column(String(100))
     DNB_conc = Column(Float)
     chip_name = Column(String(100))
-    makeload_operator = Column(Integer)
+    makeload_operator = Column(String(100))
     makeload_date = Column(TIMESTAMP)
     makeload_beizhu = Column(Text)
 
-    machine_id = Column(Integer)
+    machine_code = Column(String(100))
     lane_id = Column(Integer)
     seq_type = Column(String(100))
-    seq_operator = Column(Integer)
+    seq_operator = Column(String(100))
     seq_date = Column(TIMESTAMP)
     seq_beizhu = Column(Text)
 
@@ -58,7 +58,7 @@ class Sample(Base):
         library_kongwei=None, library_name=None, barcode=None, adapter_conc=None, library_conc=None, \
         library_vol=None, out_library_date=None, jianku_beizhu=None, shangji_kit_code=None, \
         DNB_dr_count=None, DNB_name=None, DNB_conc=None, chip_name=None, makeload_operator=None, \
-        makeload_date=None, makeload_beizhu=None, machine_id=None, lane_id=None, seq_type=None, \
+        makeload_date=None, makeload_beizhu=None, machine_code=None, lane_id=None, seq_type=None, \
         seq_operator=None, seq_date=None, seq_beizhu=None):
         self.sample_origin_code = sample_origin_code
         self.sample_dr_count = sample_dr_count
@@ -83,7 +83,7 @@ class Sample(Base):
         self.makeload_operator = makeload_operator
         self.makeload_date = makeload_date
         self.makeload_beizhu = makeload_beizhu
-        self.machine_id = machine_id
+        self.machine_code = machine_code
         self.lane_id = lane_id
         self.seq_type = seq_type
         self.seq_operator = seq_operator
@@ -92,7 +92,7 @@ class Sample(Base):
         
     
     def __repr__(self):
-        return 'wait.....'
+        return {'sample_id': self.id}
 
 
 class Machine(Base):
@@ -106,16 +106,43 @@ class Machine(Base):
         self.machine_type = machine_type
     
     def __repr__(self):
-        return 'wait'
+        return {'machine_id': self.id}
 
 class RawData(Base):
     __tablename__ = 'raw_data'
     id = Column(Integer, primary_key=True)
-    sample_id = Column(Integer)
+    sample_id = Column(Integer, ForeignKey('sample_info.id'))
+    xiaji_date = Column(TIMESTAMP)
+    split_rate = Column(Float)
+    esr = Column(Float)
+    basenum_G = Column(Float)
+    GC = Column(Float)
+    Q30_read2 = Column(Float)
+    Q30_total = Column(Float)
+    Q20 = Column(Float)
+    totalreads_M = Column(Float)
+    Lag = Column(Float)
+    Runon = Column(Float)
+    cycle_N_max = Column(Float)
+    Error_rate_est = Column(Float)
+    ChipProductivity = Column(Float)
+    ImageAre = Column(Float)
+    MaxOffsetX_MaxOffsetY = Column(Float)
+    InitialOffsetX_InitialOffsetY = Column(Float)
+    RecoverValue_A_G_T_C_AVG = Column(Float)
+    Intensity_of_All_DNB = Column(Float)
+    RHO_Intensity = Column(Float)
+    Background_Intensity = Column(Float)
+    SNR = Column(Float)
+    BIC = Column(Float)
+    FIT = Column(Float)
 
-    def __init__(self, sample_id=None):
+    '''
+    def __init__(self, sample_id=None, ceshi=None):
         self.sample_id = sample_id
+        self.ceshi = ceshi
     
     def __repr__(self):
         return 'wait'
+    '''
 

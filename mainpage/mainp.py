@@ -59,8 +59,20 @@ def ztron_insert(json_data):
             shangji_kit_code=i["shangji_kit_code"], DNB_dr_count=i["DNB_dr_count"], \
             DNB_name=i["DNB_name"], DNB_conc=i["DNB_conc"], chip_name=i["chip_name"], \
             makeload_operator=i["makeload_operator"], makeload_date=i["makeload_date"], \
-            makeload_beizhu=i["makeload_beizhu"], machine_id=i["machine_id"], lane_id=i["lane_id"], \
+            makeload_beizhu=i["makeload_beizhu"], machine_code=i["machine_code"], lane_id=i["lane_id"], \
             seq_type=i["seq_type"], seq_operator=i["seq_operator"], seq_date=i["seq_date"], seq_beizhu=i["seq_beizhu"]))
+    session.add_all(insert_data)
+    session.commit()
+
+    insert_data = []
+    for i in json_data:
+        res = session.query(Sample).filter(Sample.chip_name == i['chip_name'], Sample.lane_id == i['lane_id'], Sample.barcode == i['barcode']).first()
+        insert_data.append(RawData(sample_id=res.id, xiaji_date=i["xiaji_date"], split_rate=i["split_rate"], esr=i["esr"], basenum_G=i["basenum_G"], \
+            GC=i["GC"], Q30_read2=i["Q30_read2"], Q30_total=i["Q30_total"], Q20=i["Q20"], totalreads_M=i["totalreads_M"], Lag=i["Lag"], \
+            Runon=i["Runon"], cycle_N_max=i["cycle_N_max"], Error_rate_est=i["Error_rate_est"], ChipProductivity=i["ChipProductivity"], \
+            ImageAre=i["ImageAre"], MaxOffsetX_MaxOffsetY=i["MaxOffsetX_MaxOffsetY"], InitialOffsetX_InitialOffsetY=i["InitialOffsetX_InitialOffsetY"], \
+            RecoverValue_A_G_T_C_AVG=i["RecoverValue_A_G_T_C_AVG"], Intensity_of_All_DNB=i["Intensity_of_All_DNB"], RHO_Intensity=i["RHO_Intensity"], \
+            Background_Intensity=i["Background_Intensity"], SNR=i["SNR"], BIC=i["BIC"], FIT=i["FIT"]))
     session.add_all(insert_data)
     session.commit()
     session.close()
