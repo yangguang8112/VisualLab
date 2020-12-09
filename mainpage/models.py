@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey, func
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey, func, DateTime
 from mainpage.database import Base
 
 class User(Base):
@@ -6,6 +6,8 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     email = Column(String(120), unique=True)
+    create_date = Column(DateTime, server_default=func.now())
+    modify_date = Column(DateTime, onupdate=func.utc_timestamp())
 
     def __init__(self, name=None, email=None):
         self.name = name
@@ -20,8 +22,9 @@ class User(Base):
 class Sample(Base):
     __tablename__ = 'sample_info'
     id = Column(Integer, primary_key=True)
-    create_date = Column(TIMESTAMP(True), server_default=func.now())
-    modify_date = Column(TIMESTAMP(True), nullable=False, server_default=func.now(), onupdate=func.now())
+    create_date = Column(DateTime, server_default=func.now())
+    # python的这个接口没什么卵用，还是得用原生sql创建表才会自动更新
+    modify_date = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
     sample_origin_code = Column(String(100))
     sample_dr_count = Column(Integer)
@@ -113,8 +116,8 @@ class Machine(Base):
 class RawData(Base):
     __tablename__ = 'raw_data'
     id = Column(Integer, primary_key=True)
-    create_date = Column(TIMESTAMP(True), server_default=func.now())
-    modify_date = Column(TIMESTAMP(True), nullable=False, server_default=func.now(), onupdate=func.now())
+    create_date = Column(DateTime, server_default=func.now())
+    modify_date = Column(DateTime, server_default=func.now(), onupdate=func.now())
     
     sample_id = Column(Integer, ForeignKey('sample_info.id'))
     xiaji_date = Column(TIMESTAMP)

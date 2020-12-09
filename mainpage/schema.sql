@@ -4,6 +4,85 @@ DROP TABLE IF EXISTS qc_res;
 DROP TABLE IF EXISTS align_res;
 DROP TABLE IF EXISTS analy_res;
 
+/*创建表带自动更新功能
+*/
+use test;
+CREATE TABLE `sample_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modify_date` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sample_origin_code` varchar(100) DEFAULT NULL,
+  `sample_dr_count` int(11) DEFAULT NULL,
+  `sample_origin_conc` float DEFAULT NULL,
+  `zhijian_ban_code` varchar(100) DEFAULT NULL,
+  `zhijian_kongwei` varchar(100) DEFAULT NULL,
+  `library_kit_code` varchar(100) DEFAULT NULL,
+  `library_ban_code` varchar(100) DEFAULT NULL,
+  `library_kongwei` varchar(100) DEFAULT NULL,
+  `library_name` varchar(100) DEFAULT NULL,
+  `barcode` varchar(100) DEFAULT NULL,
+  `adapter_conc` float DEFAULT NULL,
+  `library_conc` float DEFAULT NULL,
+  `library_vol` float DEFAULT NULL,
+  `out_library_date` timestamp NULL DEFAULT NULL,
+  `jianku_beizhu` text,
+  `shangji_kit_code` varchar(100) DEFAULT NULL,
+  `DNB_dr_count` int(11) DEFAULT NULL,
+  `DNB_name` varchar(100) DEFAULT NULL,
+  `DNB_conc` float DEFAULT NULL,
+  `chip_name` varchar(100) DEFAULT NULL,
+  `makeload_operator` varchar(100) DEFAULT NULL,
+  `makeload_date` timestamp NULL DEFAULT NULL,
+  `makeload_beizhu` text,
+  `machine_code` varchar(100) DEFAULT NULL,
+  `lane_id` int(11) DEFAULT NULL,
+  `seq_type` varchar(100) DEFAULT NULL,
+  `seq_operator` varchar(100) DEFAULT NULL,
+  `seq_date` timestamp NULL DEFAULT NULL,
+  `seq_beizhu` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `raw_data` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  `modify_date` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sample_id` int(11) DEFAULT NULL,
+  `xiaji_date` timestamp NULL DEFAULT NULL,
+  `split_rate` float DEFAULT NULL,
+  `esr` float DEFAULT NULL,
+  `basenun_G` float DEFAULT NULL,
+  `GC` float DEFAULT NULL,
+  `Q30_read2` float DEFAULT NULL,
+  `Q30_total` float DEFAULT NULL,
+  `Q20` float DEFAULT NULL,
+  `totalreads_M` float DEFAULT NULL,
+  `Lag` float DEFAULT NULL,
+  `Runon` float DEFAULT NULL,
+  `cycle_N_max` float DEFAULT NULL,
+  `Error_rate_est` float DEFAULT NULL,
+  `ChipProductivity` float DEFAULT NULL,
+  `ImageAre` float DEFAULT NULL,
+  `MaxOffsetX_MaxOffsetY` float DEFAULT NULL,
+  `InitialOffsetX_InitialOffsetY` float DEFAULT NULL,
+  `RecoverValue_A_G_T_C_AVG` float DEFAULT NULL,
+  `Intensity_of_All_DNB` float DEFAULT NULL,
+  `RHO_Intensity` float DEFAULT NULL,
+  `Background_Intensity` float DEFAULT NULL,
+  `SNR` float DEFAULT NULL,
+  `BIC` float DEFAULT NULL,
+  `FIT` float DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sample_id` (`sample_id`),
+  CONSTRAINT `raw_data_ibfk_1` FOREIGN KEY (`sample_id`) REFERENCES `sample_info` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/**/
+
+
+
+
+
 /*created 应该是时间类型，需要修改
 */
 
