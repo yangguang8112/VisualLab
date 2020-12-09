@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey, func
 from mainpage.database import Base
 
 class User(Base):
@@ -20,6 +20,8 @@ class User(Base):
 class Sample(Base):
     __tablename__ = 'sample_info'
     id = Column(Integer, primary_key=True)
+    create_date = Column(TIMESTAMP(True), server_default=func.now())
+    modify_date = Column(TIMESTAMP(True), nullable=False, server_default=func.now(), onupdate=func.now())
 
     sample_origin_code = Column(String(100))
     sample_dr_count = Column(Integer)
@@ -111,6 +113,9 @@ class Machine(Base):
 class RawData(Base):
     __tablename__ = 'raw_data'
     id = Column(Integer, primary_key=True)
+    create_date = Column(TIMESTAMP(True), server_default=func.now())
+    modify_date = Column(TIMESTAMP(True), nullable=False, server_default=func.now(), onupdate=func.now())
+    
     sample_id = Column(Integer, ForeignKey('sample_info.id'))
     xiaji_date = Column(TIMESTAMP)
     split_rate = Column(Float)
