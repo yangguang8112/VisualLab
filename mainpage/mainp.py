@@ -38,7 +38,7 @@ def api_show():
     formatter = HtmlFormatter(linenos=True, cssclass="source")
     with open('api_test/ztron_upload_visual.py', 'r') as af:
         code = highlight(af.read(), lexer, formatter)
-    css = formatter.get_style_defs('.highlight')
+    css = formatter.get_style_defs()
     with open('mainpage/static/css/api.css', 'w') as cw:
         cw.write(css)
     return render_template('api.html', code=code)
