@@ -4,6 +4,7 @@ json_data = [
     {
         "sample_info":{
             "sample_origin_code" : "test0001" ,
+            "sample_code" : "s00000001" ,
             "sample_dr_count" : 1 ,
             "sample_origin_conc" : 0.2 ,
             "zhijian_ban_code" : "test_zhijian_01" ,
@@ -63,6 +64,7 @@ json_data = [
     {
         "sample_info":{
             "sample_origin_code" : "test0002" ,
+            "sample_code" : "s00000002" ,
             "sample_dr_count" : 1 ,
             "sample_origin_conc" : 0.2 ,
             "zhijian_ban_code" : "test_zhijian_01" ,

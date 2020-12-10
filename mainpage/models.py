@@ -27,6 +27,7 @@ class Sample(Base):
     modify_date = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
     sample_origin_code = Column(String(100))
+    sample_code = Column(String(100))
     sample_dr_count = Column(Integer)
     sample_origin_conc = Column(Float)
     zhijian_ban_code = Column(String(100))
@@ -58,6 +59,9 @@ class Sample(Base):
     seq_date = Column(TIMESTAMP)
     seq_beizhu = Column(Text)
 
+    def __repr__(self):
+        return {'sample_id': self.id}
+'''
     def __init__(self, sample_origin_code=None, sample_dr_count=None, sample_origin_conc=None, \
         zhijian_ban_code=None, zhijian_kongwei=None, library_kit_code=None, library_ban_code=None, \
         library_kongwei=None, library_name=None, barcode=None, adapter_conc=None, library_conc=None, \
@@ -94,10 +98,7 @@ class Sample(Base):
         self.seq_operator = seq_operator
         self.seq_date = seq_date
         self.seq_beizhu = seq_beizhu
-        
-    
-    def __repr__(self):
-        return {'sample_id': self.id}
+'''
 
 
 class Machine(Base):
