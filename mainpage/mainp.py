@@ -10,11 +10,11 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 from mainpage.config import MYSQLconfig
-'''
-from pygments.lexers import PythonLexver
-from pygments.formatters import HtmlFormatter
+
 from pygments import highlight
-'''
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
+
 
 bp = Blueprint('mainp', __name__)
 
@@ -34,12 +34,14 @@ def index():
 
 @bp.route('/api_eg', methods=['GET'])
 def api_show():
-    '''
-    formatter = HtmlFormatter(encoding='utf-8', style = 'emacs', linenos = True)
+    lexer = get_lexer_by_name("python", stripall=True)
+    formatter = HtmlFormatter(linenos=True, cssclass="source")
     with open('api_test/ztron_upload_visual.py', 'r') as af:
-        code = highlight(af.read(), PythonLexer(), formatter)
-    '''
-    return render_template('api.html')
+        code = highlight(af.read(), lexer, formatter)
+    css = formatter.get_style_defs('.highlight')
+    with open('mainpage/static/css/api.css', 'w') as cw:
+        cw.write(css)
+    return render_template('api.html', code=code)
 
 @bp.route('/ztron_upload', methods=['POST'])
 def ztron_upload():
