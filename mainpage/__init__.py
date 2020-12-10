@@ -36,5 +36,6 @@ def create_app(test_config=None):
     app.register_blueprint(mainp.bp)
     app.add_url_rule('/', endpoint='index')
     app.add_url_rule('/ztron_upload', endpoint='ztron_upload')
+    app.add_url_rule('/api_eg', endpoint='api_show')
 
     return app
