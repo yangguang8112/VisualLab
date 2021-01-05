@@ -53,7 +53,7 @@ class Sample(Base):
     makeload_beizhu = Column(Text)
 
     machine_code = Column(String(100))
-    lane_id = Column(Integer)
+    lane_id = Column(String(100))
     seq_type = Column(String(100))
     seq_operator = Column(String(100))
     seq_date = Column(TIMESTAMP)

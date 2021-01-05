@@ -1,9 +1,10 @@
+#!coding=utf-8
 import requests
 
 json_data = [
     {
         "sample_info":{
-            "sample_origin_code" : "test0001" ,
+            "sample_origin_code" : "测试test0001" ,
             "sample_code" : "s00000001" ,
             "sample_dr_count" : 1 ,
             "sample_origin_conc" : 0.2 ,
@@ -23,12 +24,12 @@ json_data = [
             "DNB_dr_count" : 0.001 ,
             "DNB_name" : "DNB_01" ,
             "DNB_conc" : 0.121 ,
-            "chip_name" : "V000000001" ,
+            "chip_name" : "V000000101" ,
             "makeload_operator" : "operator01" ,
             "makeload_date" : "2020-12-01 01:02:03" ,
             "makeload_beizhu" : "test" ,
             "machine_code" : "R000000001" ,
-            "lane_id" : 1 ,
+            "lane_id" : "L01" ,
             "seq_type" : "wgs" ,
             "seq_operator" : "operator02" ,
             "seq_date" : "2020-12-2 01:02:03" ,
