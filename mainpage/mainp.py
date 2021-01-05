@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 #from mainpage.db import get_db
 from mainpage.database import db_session
-from mainpage.models import Sample, Machine, RawData
+from mainpage.models import Sample, Machine, RawData, PipeRes
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
@@ -43,11 +43,17 @@ def api_show():
         cw.write(css)
     return render_template('api.html', code=code)
 
-@bp.route('/ztron_upload', methods=['POST'])
+@bp.route('/ztron_upload', methods=['POST', 'GET'])
 def ztron_upload():
     data = request.json
     #print(data)
     ztron_insert(data)
+    return "OK"
+
+@bp.route('/pipe_upload', methods=['POST', 'GET'])
+def pipe_upload():
+    data = request.json
+    pipe_insert(data)
     return "OK"
 
 
@@ -103,3 +109,21 @@ def ztron_insert(json_data):
     session.add_all(insert_data)
     session.commit()
     session.close()
+
+
+
+def pipe_insert(json_data):
+    engine = create_engine(MYSQLconfig,echo=True)
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
+    insert_data = []
+    for i in json_data:
+        # 真实数据中的sample id需要从主表中获取 和98行一样
+        res = session.query(Sample).filter(Sample.sample_code == i['sample_name']).first()
+        if res:
+            i['sample_id'] = res.id
+        insert_data.append(auto_fill(PipeRes, i))
+    session.add_all(insert_data)
+    session.commit()
+    session.close()
+

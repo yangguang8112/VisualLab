@@ -37,5 +37,6 @@ def create_app(test_config=None):
     app.add_url_rule('/', endpoint='index')
     app.add_url_rule('/ztron_upload', endpoint='ztron_upload')
     app.add_url_rule('/api_eg', endpoint='api_show')
+    app.add_url_rule('/pipe_upload', endpoint='pipe_upload')
 
     return app
