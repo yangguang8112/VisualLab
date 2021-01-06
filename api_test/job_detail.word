@@ -1,0 +1,13 @@
+Job_ID String
+Job_Name String
+Module String
+Step String
+Sample String
+Thread Integer
+Start_Time TIMESTAMP
+End_Time TIMESTAMP
+Cpu_Utilized_s Float
+Wall_clock_Time_s Float
+Core_walltime_s Float
+Ratio Float
+Maxmem_K Float

@@ -5,7 +5,7 @@ from werkzeug.exceptions import abort
 
 #from mainpage.db import get_db
 from mainpage.database import db_session
-from mainpage.models import Sample, Machine, RawData, PipeRes
+from mainpage.models import Sample, Machine, RawData, PipeRes, JobDetail
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
@@ -54,6 +54,12 @@ def ztron_upload():
 def pipe_upload():
     data = request.json
     pipe_insert(data)
+    return "OK"
+
+@bp.route('/job_upload', methods=['POST'])
+def job_upload():
+    data = request.json
+    job_insert(data)
     return "OK"
 
 
@@ -127,3 +133,14 @@ def pipe_insert(json_data):
     session.commit()
     session.close()
 
+
+def job_insert(json_data):
+    engine = create_engine(MYSQLconfig,echo=True)
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
+    insert_data = []
+    for i in json_data:
+        insert_data.append(auto_fill(JobDetail, i))
+    session.add_all(insert_data)
+    session.commit()
+    session.close()

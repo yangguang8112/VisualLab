@@ -287,3 +287,23 @@ class PipeRes(Base):
     Note = Column(Text)
 
 
+class JobDetail(Base):
+    __tablename__ = 'job_detail'
+    id = Column(Integer, primary_key=True)
+    create_date = Column(DateTime, server_default=func.now())
+    project_name = Column(String(100))
+    cluster_name = Column(String(100))
+    PipelineVersion = Column(String(100))
+    Job_ID = Column(String(100))
+    Job_Name = Column(String(100))
+    Module = Column(String(200))
+    Step = Column(String(100))
+    Sample = Column(String(100))
+    Thread = Column(Integer)
+    Start_Time = Column(TIMESTAMP)
+    End_Time = Column(TIMESTAMP)
+    Cpu_Utilized_s = Column(Float)
+    Wall_clock_Time_s = Column(Float)
+    Core_walltime_s = Column(Float)
+    Ratio = Column(Float)
+    Maxmem_K = Column(Float)
