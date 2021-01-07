@@ -24,7 +24,7 @@ with open(res_file, 'r') as rf:
 def generate_json(res_l, word_l):
     json_res = {"project_name": "ChinaMAP-phase1", "cluster_name": "CNGB"}
     for index, word in enumerate(word_l):
-        if res_l[index] == 'NA':
+        if res_l[index] == 'NA' or not res_l[index]:
             continue
         elif word[1]  == 'Float':
             json_res[word[0]] = float(res_l[index])
