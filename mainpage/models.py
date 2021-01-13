@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey, func, DateTime
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Float, Text, ForeignKey, func, DateTime, REAL
 from mainpage.database import Base
 
 class User(Base):
@@ -124,13 +124,13 @@ class RawData(Base):
     xiaji_date = Column(TIMESTAMP)
     split_rate = Column(Float)
     esr = Column(Float)
-    basenun_G = Column(Float)
+    basenun_G = Column(REAL)
     GC = Column(Float)
-    Q30_read1 = Column(Float)
-    Q30_read2 = Column(Float)
-    Q30_total = Column(Float)
-    Q20 = Column(Float)
-    totalreads_M = Column(Float)
+    Q30_read1 = Column(REAL)
+    Q30_read2 = Column(REAL)
+    Q30_total = Column(REAL)
+    Q20 = Column(REAL)
+    totalreads_M = Column(REAL)
     Lag1 = Column(Float)
     Lag2 = Column(Float)
     Lag_table = Column(Text)
