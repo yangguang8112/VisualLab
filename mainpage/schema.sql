@@ -6,12 +6,14 @@ DROP TABLE IF EXISTS analy_res;
 
 /*创建表带自动更新功能
 */
-use test;
+CREATE DATABASE IF NOT EXISTS visualDB DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+use visualDB;
 CREATE TABLE `sample_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `create_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `modify_date` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `sample_origin_code` varchar(100) DEFAULT NULL,
+  `sample_code` varchar(100) DEFAULT NULL,
   `sample_dr_count` int(11) DEFAULT NULL,
   `sample_origin_conc` float DEFAULT NULL,
   `zhijian_ban_code` varchar(100) DEFAULT NULL,
@@ -35,13 +37,13 @@ CREATE TABLE `sample_info` (
   `makeload_date` timestamp NULL DEFAULT NULL,
   `makeload_beizhu` text,
   `machine_code` varchar(100) DEFAULT NULL,
-  `lane_id` int(11) DEFAULT NULL,
+  `lane_id` varchar(100) DEFAULT NULL,
   `seq_type` varchar(100) DEFAULT NULL,
   `seq_operator` varchar(100) DEFAULT NULL,
   `seq_date` timestamp NULL DEFAULT NULL,
   `seq_beizhu` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `raw_data` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -51,31 +53,42 @@ CREATE TABLE `raw_data` (
   `xiaji_date` timestamp NULL DEFAULT NULL,
   `split_rate` float DEFAULT NULL,
   `esr` float DEFAULT NULL,
-  `basenun_G` float DEFAULT NULL,
+  `basenun_G` real DEFAULT NULL,
   `GC` float DEFAULT NULL,
-  `Q30_read2` float DEFAULT NULL,
-  `Q30_total` float DEFAULT NULL,
-  `Q20` float DEFAULT NULL,
-  `totalreads_M` float DEFAULT NULL,
-  `Lag` float DEFAULT NULL,
-  `Runon` float DEFAULT NULL,
+  `Q30_read1` real DEFAULT NULL,
+  `Q30_read2` real DEFAULT NULL,
+  `Q30_total` real DEFAULT NULL,
+  `Q20` real DEFAULT NULL,
+  `totalreads_M` real DEFAULT NULL,
+  `Lag1` float DEFAULT NULL,
+  `Lag2` float DEFAULT NULL,
+  `Lag_table` text,
+  `Runon1` float DEFAULT NULL,
+  `Runon2` float DEFAULT NULL,
+  `Runon_table` text,
   `cycle_N_max` float DEFAULT NULL,
   `Error_rate_est` float DEFAULT NULL,
   `ChipProductivity` float DEFAULT NULL,
   `ImageAre` float DEFAULT NULL,
-  `MaxOffsetX_MaxOffsetY` float DEFAULT NULL,
-  `InitialOffsetX_InitialOffsetY` float DEFAULT NULL,
-  `RecoverValue_A_G_T_C_AVG` float DEFAULT NULL,
-  `Intensity_of_All_DNB` float DEFAULT NULL,
-  `RHO_Intensity` float DEFAULT NULL,
-  `Background_Intensity` float DEFAULT NULL,
-  `SNR` float DEFAULT NULL,
+  `Offset_table` text,
+  `RecoverValue_A` float DEFAULT NULL,
+  `RecoverValue_G` float DEFAULT NULL,
+  `RecoverValue_T` float DEFAULT NULL,
+  `RecoverValue_C` float DEFAULT NULL,
+  `RecoverValue_AVG` float DEFAULT NULL,
+  `RecoverValue_AGCT_table` text,
+  `Intensity_of_All_DNB_table` text,
+  `RHO_Intensity_table` text,
+  `Background_Intensity_table` text,
+  `SNR_table` text,
   `BIC` float DEFAULT NULL,
+  `BIC_table` text,
   `FIT` float DEFAULT NULL,
+  `FIT_table` text,
   PRIMARY KEY (`id`),
   KEY `sample_id` (`sample_id`),
   CONSTRAINT `raw_data_ibfk_1` FOREIGN KEY (`sample_id`) REFERENCES `sample_info` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /**/
 
